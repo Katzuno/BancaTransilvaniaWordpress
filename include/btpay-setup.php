@@ -49,8 +49,8 @@ function btpay_install () {
    
    $sql = "CREATE TABLE $table_mail (
     id tinyint(1) NOT NULL AUTO_INCREMENT,
-    from_mail varchar(12) DEFAULT 'Not set' NOT NULL,
-    notify_mail varchar(12) DEFAULT 'Not set' NOT NULL,
+    from_mail varchar(64) DEFAULT 'Not set' NOT NULL,
+    notify_mail varchar(64) DEFAULT 'Not set' NOT NULL,
     subject_prefix varchar(64) DEFAULT '" . get_bloginfo('name') . "' NOT NULL,
     company_logo varchar(128) DEFAULT 'Not set' NOT NULL,
     last_update datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,

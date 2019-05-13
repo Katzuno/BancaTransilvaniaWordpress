@@ -51,13 +51,25 @@
 
 			<div class="form-group">
 				<label for="frmName" class="col-sm-4 control-label">Company logo</label>
-				<div class="col-sm-8">
-					<input type="text" class="form-control" name="logo_path" value="<?php echo $logo_path; ?>">
-				</div>
+				<?php
+				// Save attachment ID
+				if ( isset( $_POST['update_mail'] ) && isset( $_POST['logo_path'] ) ) :
+					update_option( 'media_selector_attachment_id', absint( $_POST['logo_path'] ) );
+				endif;
+
+				wp_enqueue_media();
+				?>
+				<div class='image-preview-wrapper'>
+
+				<img id='image-preview' src='<?php echo wp_get_attachment_url( $company_logo ); ?>' width='100' height='100' style='max-height: 100px; width: 100px;'>
+			</div>
+				<input id="upload_image_button" type="button" class="button" value="<?php _e( 'Upload image' ); ?>" />
+				<input type='hidden' name='logo_path' id='logo_path' value='<?php echo $company_logo?>'>
+
 		  </div>
 
 		  <div class="col-sm-8 col-sm-offset-4">
-			  <button type="submit" name="update_config" value="update_mail" class="btn btn-success">Update mail config</button>
+			  <button type="submit" name="update_mail" value="update_mail" class="btn btn-success">Update mail config</button>
 		  </div>
 
 		</form>
